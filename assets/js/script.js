@@ -1,15 +1,19 @@
 // variables
 var optButtons = document.getElementsByClassName("choice"); //ARRAY//
-var oneBtn = document.body.
+console.log(optButtons);//test to see if it logs
 
-console.log(oneBtn);
+var buttonOne = document.getElementById("one");
+var buttonTwo = document.getElementById("two");
+var buttonThree = document.getElementById("three");
+var buttonFour = document.getElementById("four");
+console.log(buttonOne); //test to see if it logs the button
 
-console.log(optButtons);
 
-let titleQ = document.getElementsByClassName("header");
+let titleQ = document.querySelector("h2"); //place for quiz question
 console.log(titleQ);
 
 var timer = 0;
+let currentQuestion = 0;
 var questions = [
 {
     title:"Which method removes the last element from an array?",
@@ -39,17 +43,46 @@ var questions = [
 ] //end of array of objects
 
 
-let playQuiz = function () {
+var one = buttonOne.addEventListener('click', () => {
+});
+var two = buttonTwo.addEventListener('click', () => {
+});
+var three = buttonThree.addEventListener('click', () => {
+});
+var four = buttonFour.addEventListener('click', () => {
+});
 
+
+let playQuiz = function() {
+        titleQ.innerHTML = questions[0].title;
+        buttonOne.innerHTML = questions[0].options[0];
+        buttonTwo.innerHTML = questions[0].options[1];
+        buttonThree.innerHTML = questions[0].options[2];
+        buttonFour.innerHTML = questions[0].options[3];
+    if (three){
+        console.log("correct!");
+    }
 }
 
+playQuiz();
 
-
-// let playQuiz = function() {
-//     for (let Q = 0; Q < questions.length; Q++) {
-//         titleQ.innerHTML = + questions[Q].title;
-//         optButtons.innerHTML = + questions[].options;
-
-//     }
-// };
-// playQuiz();
+function handleAnswer(selectedButton) {
+    const selectedAnswer = selectedButton.innerHTML;
+    const currentQuestionObj = questions[currentQuestion];
+  
+    if (selectedAnswer === currentQuestionObj.answer) {
+      console.log("Correct!");
+    } else {
+      console.log("Incorrect!");
+    }
+  
+    currentQuestion++;
+  
+    if (currentQuestion < questions.length) {
+      // If there are more questions, move to the next question
+      playQuiz();
+    } else {
+      // Quiz has ended, do something (e.g., show results)
+      console.log("Quiz ended");
+    }
+  }
