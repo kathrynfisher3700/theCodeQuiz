@@ -12,7 +12,7 @@ console.log(buttonOne); //test to see if it logs the button
 let titleQ = document.querySelector("h2"); //place for quiz question
 console.log(titleQ);
 
-var timer = 0;
+var timer = 75;
 let currentQuestion = 0;
 var questions = [
 {
@@ -43,46 +43,90 @@ var questions = [
 ] //end of array of objects
 
 
-var one = buttonOne.addEventListener('click', () => {
-});
-var two = buttonTwo.addEventListener('click', () => {
-});
-var three = buttonThree.addEventListener('click', () => {
-});
-var four = buttonFour.addEventListener('click', () => {
-});
 
-
-let playQuiz = function() {
-        titleQ.innerHTML = questions[0].title;
-        buttonOne.innerHTML = questions[0].options[0];
-        buttonTwo.innerHTML = questions[0].options[1];
-        buttonThree.innerHTML = questions[0].options[2];
-        buttonFour.innerHTML = questions[0].options[3];
-    if (three){
-        console.log("correct!");
-    }
-}
-
-playQuiz();
-
-function handleAnswer(selectedButton) {
-    const selectedAnswer = selectedButton.innerHTML;
-    const currentQuestionObj = questions[currentQuestion];
+function startQuiz() {
+    showQuestion();
+    startTimer();
+  }
   
-    if (selectedAnswer === currentQuestionObj.answer) {
-      console.log("Correct!");
+  // Function to display a question and its answer options
+  function showQuestion() {
+    var quiz = questions[currentQuestion];
+  
+    titleQ.textContent = quiz.title;
+  
+    buttonOne.textContent = quiz.options[0];
+    buttonTwo.textContent = quiz.options[1];
+    buttonThree.textContent = quiz.options[2];
+    buttonFour.textContent = quiz.options[3];
+  
+    // Add event listeners to the answer options buttons
+    buttonOne.addEventListener("click", checkAnswer);
+    buttonTwo.addEventListener("click", checkAnswer);
+    buttonThree.addEventListener("click", checkAnswer);
+    buttonFour.addEventListener("click", checkAnswer);
+  }
+  
+  // Function to check if the selected answer is correct
+  function checkAnswer(event) {
+    var selectedOption = event.target;
+    var selectedAnswer = selectedOption.textContent;
+  
+    if (selectedAnswer === questions[currentQuestion].answer) {
+      selectedOption.style.backgroundColor = "green";
+      setTimeout(nextQuestion, 1000); // Move to next question after 1 second
+        timer -=10;
     } else {
-      console.log("Incorrect!");
+      selectedOption.style.backgroundColor = "red";
+      setTimeout(function () {
+        selectedOption.style.backgroundColor = "";
+        nextQuestion();
+      }, 1000); // Move to next question after 1 second
+        timer += 10;
     }
+  }
   
+  // Function to move to the next question
+  function nextQuestion() {
     currentQuestion++;
   
     if (currentQuestion < questions.length) {
-      // If there are more questions, move to the next question
-      playQuiz();
+      // Reset button colors
+      buttonOne.style.backgroundColor = "";
+      buttonTwo.style.backgroundColor = "";
+      buttonThree.style.backgroundColor = "";
+      buttonFour.style.backgroundColor = "";
+  
+      // Remove event listeners from answer options buttons
+      buttonOne.removeEventListener("click", checkAnswer);
+      buttonTwo.removeEventListener("click", checkAnswer);
+      buttonThree.removeEventListener("click", checkAnswer);
+      buttonFour.removeEventListener("click", checkAnswer);
+  
+      showQuestion();
     } else {
-      // Quiz has ended, do something (e.g., show results)
-      console.log("Quiz ended");
+      titleQ.textContent = "Quiz Completed!";
+      clearInterval(intervalId);
+      displayTime();
+
+      buttonOne.innerHTML = "";
+      buttonTwo.innerHTML = "";
+      buttonThree.innerHTML = "";
+      buttonFour.innerHTML = "";
+      // Code to display final score or submit form, etc.
     }
   }
+
+  function startTimer() {
+    intervalId = setInterval(function () {
+      timer++;
+    }, 1000);
+  }
+  
+  // Function to display the time taken in seconds
+  function displayTime() {
+    titleQ.textContent += " Time: " + timer + "s";
+  }
+  
+  
+  startQuiz();
