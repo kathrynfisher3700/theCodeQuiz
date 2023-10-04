@@ -2,7 +2,7 @@
 
 ## Description
 
-The is a good beginning to what could be a dynamic coding quiz.
+This is a good beginning to what could be a dynamic coding quiz.
 
 Are you new to coding? Want to test your knowledge? This quiz makes answering coding questions fun by utilizing buttons and color correction.
 
@@ -16,7 +16,7 @@ No installation or sign-up required! Simply follow this link: [click here](https
 A goal is to start the quiz when you click "Click Here to Start Timer".
 For now, your timer starts when you load the page and the first question is loaded. 
 
-When you answer the question, the button you chose will flash GREEN for correct or RED for incorrect. 
+When you answer the question, the button you chose will flash 🟩GREEN for correct or 🟥RED for incorrect. 
 
 The timer begins at 75seconds. With each correct answer, 10sec is removed; with each incorrect answer, 10sec is added. The goal is to recieve the lowest time possible.
 
@@ -27,15 +27,20 @@ The timer begins at 75seconds. With each correct answer, 10sec is removed; with 
 ## Credits
 
 Idea and logic path provided by UCF Coding Bootcamp.
+
 Special thanks to my classmates in the UCF Coding Bootcamp.
-[Ascii art](https://www.asciiart.eu/ascii-one-line)
-[W3 Schools](https://www.w3schools.com/jsref/event_onclick.asp)
+
+Comment line art found at [Ascii art](https://www.asciiart.eu/ascii-one-line)
+
+Javascript how-to found at [W3 Schools](https://www.w3schools.com/jsref/event_onclick.asp)
 
 ## Improvements To Be Made
--display timer countdown
+-Start button initilizes timer and shows first question 🚨
 
--prompt and store: initials and score
+-Display timer countdown ⏱️
+
+-Prompt and store: initials and score 📌
 
 -High Score button revealing previous initials and scores in order from highest to 
-lowest
+lowest 📈
 
