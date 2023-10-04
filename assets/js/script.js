@@ -9,7 +9,12 @@ var buttonFour = document.getElementById("four");
 console.log(buttonOne); //<%%%%|==========> test to see if it logs the button
 
 var startButton = document.getElementById("start");
+    startButton.addEventListener('click', function() {
+        
+    })
+
 var timerShown = document.getElementsByClassName("timer");
+console.log(timerShown);
 
 // <%%%%|==========> place for quiz title (questions)
 let titleQ = document.querySelector("h2"); 
@@ -75,14 +80,14 @@ function checkAnswer(event) {
 
   if (selectedAnswer === questions[currentQuestion].answer) {
     selectedOption.style.backgroundColor = "green"; //<%%%%|==========>CORRECT
-    setTimeout(nextQuestion, 1000); // <%%%%|==========> Moves to next question after 1sec
+    setTimeout(nextQuestion, 500); // <%%%%|==========> Moves to next question after 1sec
     timer -= 10;
   } else {
     selectedOption.style.backgroundColor = "red"; //<%%%%|==========>WRONG
     setTimeout(function () {
       selectedOption.style.backgroundColor = "";
       nextQuestion();
-    }, 1000); // <%%%%|==========> Move to next question after 1sec
+    }, 500); // <%%%%|==========> Move to next question after 1sec
     timer += 10;
   }
 }
