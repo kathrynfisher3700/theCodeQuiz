@@ -35,10 +35,6 @@ Comment line art found at [Ascii art](https://www.asciiart.eu/ascii-one-line)
 Javascript how-to found at [W3 Schools](https://www.w3schools.com/jsref/event_onclick.asp)
 
 ## Improvements To Be Made
--Start button initilizes timer and shows first question 🚨
-
--Display timer countdown ⏱️
-
 -Prompt and store: initials and score 📌
 
 -High Score button revealing previous initials and scores in order from highest to 
