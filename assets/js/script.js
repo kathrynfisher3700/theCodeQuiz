@@ -8,16 +8,28 @@ var buttonThree = document.getElementById("three");
 var buttonFour = document.getElementById("four");
 console.log(buttonOne); //<%%%%|==========> test to see if it logs the button
 
-var startButton = document.getElementById("start");
-    startButton.addEventListener('click', function() {
-        
-    })
 
-var timerShown = document.getElementsByClassName("timer");
+var startButton = document.getElementById("start");
+startButton.addEventListener("click", () => {
+  intervalId = setInterval(function () {
+    timerShown.innerHTML = timer;
+    timer--;
+    if (timer <= 0){
+      clearInterval(intervalId);
+      displayTime();
+      titleQ.textContent = "Congrats";
+    }
+    console.log(timer);
+  }, 1000);
+  showQuestion();
+});
+
+
+var timerShown = document.getElementsByClassName("timer")[0];
 console.log(timerShown);
 
 // <%%%%|==========> place for quiz title (questions)
-let titleQ = document.querySelector("h2"); 
+let titleQ = document.querySelector("h2");
 
 var timer = 75;
 let currentQuestion = 0;
@@ -48,11 +60,6 @@ var questions = [
     answer: "0",
   },
 ]; //<%%%%|==========>end of array of objects
-
-function startQuiz() {
-  showQuestion();
-  startTimer();
-}
 
 
 // <%%%%|==========> Displays a question and its answer options
@@ -114,23 +121,17 @@ function nextQuestion() {
     titleQ.textContent = "Quiz Completed!";
     clearInterval(intervalId);
     displayTime(); //<%%%%|==========> Displays final score
-
-    buttonOne.innerHTML = "";
-    buttonTwo.innerHTML = "";
-    buttonThree.innerHTML = "";
-    buttonFour.innerHTML = "";
-    }
-}
-
-function startTimer() {
-  intervalId = setInterval(function () {
-    timer--;
-  }, 1000);
+    timerShown.textContent = '';
+  }
 }
 
 // <%%%%|==========> Function to display final score
 function displayTime() {
   titleQ.textContent += " Time: " + timer + "s";
+  buttonOne.innerHTML = "";
+  buttonTwo.innerHTML = "";
+  buttonThree.innerHTML = "";
+  buttonFour.innerHTML = "";
 }
 
-startQuiz();
+
